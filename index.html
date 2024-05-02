@@ -12,22 +12,41 @@
             </header>
             <div id="body">
                 </br>
-                <p>Testing</p>
+                <p>dir</p>
                 <ul id="myUL">
+                    <li><span class="caret">assets</span>
+                        <ul class="nested">
+                            <li><span class="caret">img</span>
+                                <ul class="nested">
+                                    <li>-</li>
+                                </ul>
+                            </li>
+                            </li>
+                        </ul>
+                    </li>
                     <li><span class="caret">scripts</span>
                         <ul class="nested">
+                            <li><span class="caret">css</span>
+                                <ul class="nested">
+                                    <li>main.css</li>
+                                </ul>
+                            </li>
                             <li><span class="caret">js</span>
                                 <ul class="nested">
-                                    <li>main</li>
+                                    <li>main.js</li>
                                 </ul>
                             </li>
                         </ul>
-                    </li>  
+                    </li>
                 </ul>
             </div>
             <footer>
                 <style>
                     /* Tree view styling */
+                    ul {
+                        list-style: none;
+                    }
+
                     .caret {
                         cursor: pointer;
                         user-select: none; /* Prevent text selection */
