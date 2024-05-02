@@ -7,32 +7,65 @@
     </head>
     <main>
         <body>
-        <header>
-            <h1>index</h1>
-        </header>
-        <div id="body">
-            </br>
-            <p>Testing</p>
-            <ul id="myUL">
-                <li><span class="caret">scripts</span>
-                    <ul class="nested">
-                        <li><span class="caret">js</span>
-                            <ul class="nested">
-                                <li>main</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>  
-            </ul>
-        </div>
+            <header>
+                <h1>index</h1>
+            </header>
+            <div id="body">
+                </br>
+                <p>Testing</p>
+                <ul id="myUL">
+                    <li><span class="caret">scripts</span>
+                        <ul class="nested">
+                            <li><span class="caret">js</span>
+                                <ul class="nested">
+                                    <li>main</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>  
+                </ul>
+            </div>
             <footer>
                 <style>
                     /* Tree view styling */
+                    .caret {
+                        cursor: pointer;
+                        user-select: none; /* Prevent text selection */
+                    }
 
+                    /* Caret icons */
+                    .caret::before {
+                        content: "▶"; /* Default caret icon */
+                        margin-right: 5px;
+                    }
+
+                    /* Rotate the caret when nested elements are shown */
+                    .caret-down::before {
+                        transform: rotate(90deg);
+                    }
+
+                    /* Nested list styling */
+                    .nested {
+                        display: none; /* Hide nested elements by default */
+                        padding-left: 20px; /* Add indentation */
+                    }
+
+                    /* Show nested elements when caret is clicked */
+                    .active {
+                        display: block;
+                    }
                 </style>
                 <script>
-                    // Tree view actions
-            
+                    // Tree view actions (collapsing and extending of nested sections)
+                    var toggler = document.getElementsByClassName("caret");
+                    var i;
+
+                    for (i = 0; i < toggler.length; i++) {
+                        toggler[i].addEventListener("click", function() {
+                            this.parentElement.querySelector(".nested").classList.toggle("active");
+                            this.classList.toggle("caret-down");
+                        });
+                    }
                 </script>
             </footer>
         </body>
