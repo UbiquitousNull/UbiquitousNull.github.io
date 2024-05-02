@@ -4,6 +4,37 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>index.html</title>
+        <style>
+            /* Tree view styling */
+            .caret {
+                cursor: pointer;
+                user-select: none; /* Prevent text selection */
+            }
+    
+            /* Caret icons */
+            .caret::before {
+                content: "▶"; /* Default caret icon */
+                margin-right: 5px;
+                display: inline-block;
+                transition: transform 0.3s; /* Add transition for smooth rotation */
+            }
+    
+            /* Rotate the caret when nested elements are shown */
+            .caret-down::before {
+                transform: rotate(90deg);
+            }
+    
+            /* Nested list styling */
+            .nested {
+                display: none; /* Hide nested elements by default */
+                padding-left: 20px; /* Add indentation */
+            }
+    
+            /* Show nested elements when caret is clicked */
+            .active {
+                display: block;
+            }
+        </style>
     </head>
     <main>
         <body>
@@ -26,44 +57,17 @@
                 </ul>
             </div>
             <footer>
-                <style>
-                    /* Tree view styling */
-                    .caret {
-                        cursor: pointer;
-                        user-select: none; /* Prevent text selection */
-                    }
-
-                    /* Caret icons */
-                    .caret::before {
-                        content: "▶"; /* Default caret icon */
-                        margin-right: 5px;
-                    }
-
-                    /* Rotate the caret when nested elements are shown */
-                    .caret-down::before {
-                        transform: rotate(180deg);
-                    }
-
-                    /* Nested list styling */
-                    .nested {
-                        display: none; /* Hide nested elements by default */
-                        padding-left: 20px; /* Add indentation */
-                    }
-
-                    /* Show nested elements when caret is clicked */
-                    .active {
-                        display: block;
-                    }
-                </style>
+                
                 <script>
                     // Tree view actions (collapsing and extending of nested sections)
                     var toggler = document.getElementsByClassName("caret");
                     var i;
-
+        
                     for (i = 0; i < toggler.length; i++) {
                         toggler[i].addEventListener("click", function() {
-                            this.parentElement.querySelector(".nested").classList.toggle("active");
-                            this.classList.toggle("caret-down");
+                            this.classList.toggle("caret-down"); // Toggle caret rotation class
+                            var nested = this.parentElement.querySelector(".nested");
+                            nested.classList.toggle("active"); // Toggle visibility of nested elements
                         });
                     }
                 </script>
