@@ -16,7 +16,7 @@
                 <ul id="myUL">
                     <li><span class="caret">assets</span>
                         <ul class="nested">
-                            <li><span class="caret">img</span>
+                            <li><span class="caret">img</span> 
                                 <ul class="nested">
                                     <li>-</li>
                                 </ul>
@@ -46,6 +46,9 @@
                     ul {
                         list-style: none;
                     }
+                    li {
+                        list-style-type: "-> ";
+                    }
 
                     .caret {
                         cursor: pointer;
@@ -54,7 +57,7 @@
             
                     /* Caret icons */
                     .caret::before {
-                        content: "▶"; /* Default caret icon */
+                        content: "└"; /* Default caret icon */
                         margin-right: 5px;
                         display: inline-block;
                         transition: transform 0.3s; /* Add transition for smooth rotation */
