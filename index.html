@@ -69,7 +69,16 @@
                     }
 
                     .folder {
+                        cursor: pointer;
+                        user-select: none;
+                    }
+
+                    .folder::before {
                         list-style-type: "\1F4C1";
+                    }
+
+                    .folder-open::before {
+                        list-style-type: "\1F4C2";
                     }
             
                     /* Nested list styling */
@@ -85,16 +94,30 @@
                 </style>
                 <script>
                     // Tree view actions (collapsing and extending of nested sections)
-                    var toggler = document.getElementsByClassName("caret");
+                    var li = document.getElementsByTagName("li");
+                    var carets = document.getElementsByClassName("caret");
+                    var folders = document.getElementsByClassName("folder");
                     var i;
-        
-                    for (i = 0; i < toggler.length; i++) {
-                        toggler[i].addEventListener("click", function() {
-                            this.classList.toggle("caret-down"); // Toggle caret rotation class
-                            var nested = this.parentElement.querySelector(".nested");
-                            nested.classList.toggle("active"); // Toggle visibility of nested elements
-                        });
+
+                    if (li.classList.contains("folder")) {
+                        for (i = 0; i < folders.length; i++) {
+                            folders[i].addEventListener("click", function() {
+                                this.classList.toggle("folder-open"); // Toggle folder icon class
+                                var nested = this.parentElement.querySelector(".nested");
+                                nested.classList.toggle("active"); // Toggle visibility of nested elements
+                            });
+                        }
+                    }else{
+                        for (i = 0; i < carets.length; i++) {
+                            carets[i].addEventListener("click", function() {
+                                this.classList.toggle("caret-down"); // Toggle caret rotation class
+                                var nested = this.parentElement.querySelector(".nested");
+                                nested.classList.toggle("active"); // Toggle visibility of nested elements
+                            });
+                        }
                     }
+        
+                    
                 </script>
             </footer>
         </body>
