@@ -12,11 +12,11 @@
             </header>
             <div id="body">
                 </br>
-                <p>dir</p>
+                <p>.</p>
                 <ul id="myUL">
-                    <li><span class="caret">assets</span>
+                    <li><span class="caret FOLDER">assets</span>
                         <ul class="nested">
-                            <li><span class="caret">img</span> 
+                            <li><span class="caret FOLDER">img</span> 
                                 <ul class="nested">
                                     <li>-</li>
                                 </ul>
@@ -47,7 +47,7 @@
                         list-style: none;
                     }
                     li {
-                        list-style-type: "└ ";
+                        list-style-type: "└─";
                     }
 
                     .caret {
@@ -57,7 +57,7 @@
             
                     /* Caret icons */
                     .caret::before {
-                        content: "└"; /* Default caret icon */
+                        content: "─"; /* Default caret icon */
                         margin-right: 5px;
                         display: inline-block;
                         transition: transform 0.3s; /* Add transition for smooth rotation */
@@ -67,6 +67,8 @@
                     .caret-down::before {
                         transform: rotate(90deg);
                     }
+
+                    .FOLDER
             
                     /* Nested list styling */
                     .nested {
