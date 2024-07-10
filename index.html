@@ -1,125 +1,130 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>index.html</title>
-    </head>
-    <main>
-        <body>
-            <header>
-                <h1>index</h1>
-            </header>
-            <div id="body">
-                </br>
-                <p>.</p>
-                <ul id="myUL">
-                    <li class="folder"><span class="caret">assets</span>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>index.html</title>
+</head>
+<main>
+
+    <body>
+        <header>
+            <h1>index</h1>
+        </header>
+        <div id="body">
+            </br>
+            <p>.</p>
+            <ul id="myUL">
+                <li class="folder"><span class="caret">assets</span>
+                    <ul class="nested">
+                        <li class="folder"><span class="caret">img</span>
+                            <ul class="nested">
+                                <li>-</li>
+                            </ul>
+                        </li>
+                </li>
+            </ul>
+            </li>
+            <li class="folder"><span class="caret">scripts</span>
+                <ul class="nested">
+                    <li class="folder"><span class="caret">css</span>
                         <ul class="nested">
-                            <li class="folder"><span class="caret">img</span> 
-                                <ul class="nested">
-                                    <li>-</li>
-                                </ul>
-                            </li>
-                            </li>
+                            <li>main.css</li>
                         </ul>
                     </li>
-                    <li class="folder"><span class="caret">scripts</span>
+                    <li class="folder"><span class="caret">js</span>
                         <ul class="nested">
-                            <li class="folder"><span class="caret">css</span>
-                                <ul class="nested">
-                                    <li>main.css</li>
-                                </ul>
-                            </li>
-                            <li class="folder"><span class="caret">js</span>
-                                <ul class="nested">
-                                    <li>main.js</li>
-                                </ul>
-                            </li>
+                            <li>main.js</li>
                         </ul>
                     </li>
                 </ul>
-            </div>
-            <footer>
-                <style>
-                    /* Tree view styling */
-                    ul {
-                        list-style: none;
-                    }
-                    li {
-                        list-style-type: "└─";
-                    }
+            </li>
+            </ul>
+        </div>
+        <footer>
+            <style>
+                /* Tree view styling */
+                ul {
+                    list-style: none;
+                }
 
-                    .caret {
-                        cursor: pointer;
-                        user-select: none; /* Prevent text selection */
-                    }
-            
-                    /* Caret icons */
-                    .caret::before {
-                        content: "─"; /* Default caret icon */
-                        margin-right: 5px;
-                        display: inline-block;
-                        transition: transform 0.3s; /* Add transition for smooth rotation */
-                    }
-            
-                    /* Rotate the caret when nested elements are shown */
-                    .caret-down::before {
-                        transform: rotate(90deg);
-                    }
+                li {
+                    list-style-type: "└─";
+                }
 
-                    .folder {
-                        cursor: pointer;
-                        user-select: none;
-                    }
+                .caret {
+                    cursor: pointer;
+                    user-select: none;
+                    /* Prevent text selection */
+                }
 
-                    .folder::before {
-                        list-style-type: "\1F4C1";
-                    }
+                /* Caret icons */
+                .caret::before {
+                    content: "─";
+                    /* Default caret icon */
+                    margin-right: 5px;
+                    display: inline-block;
+                    transition: transform 0.3s;
+                    /* Add transition for smooth rotation */
+                }
 
-                    .folder-open::before {
-                        list-style-type: "\1F4C2";
-                    }
-            
-                    /* Nested list styling */
-                    .nested {
-                        display: none; /* Hide nested elements by default */
-                        padding-left: 20px; /* Add indentation */
-                    }
-            
-                    /* Show nested elements when caret is clicked */
-                    .active {
-                        display: block;
-                    }
-                </style>
-                <script>
-                    // Tree view actions (collapsing and extending of nested sections)
-                    var li = document.querySelectorAll("li");
-                    var carets = document.getElementsByClassName("caret");
-                    var folders = document.getElementsByClassName("folder");
-                    var i;
+                /* Rotate the caret when nested elements are shown */
+                .caret-down::before {
+                    transform: rotate(90deg);
+                }
 
-                    if (li.classList.contains("folder")) {
-                        for (i = 0; i < folders.length; i++) {
-                            folders[i].addEventListener("click", function() {
-                                this.classList.toggle("folder-open"); // Toggle folder icon class
-                                var nested = this.parentElement.querySelector(".nested");
-                                nested.classList.toggle("active"); // Toggle visibility of nested elements
-                            });
-                        }
-                    }else{
-                        for (i = 0; i < carets.length; i++) {
-                            carets[i].addEventListener("click", function() {
-                                this.classList.toggle("caret-down"); // Toggle caret rotation class
-                                var nested = this.parentElement.querySelector(".nested");
-                                nested.classList.toggle("active"); // Toggle visibility of nested elements
-                            });
-                        }
+                .folder {
+                    cursor: pointer;
+                    user-select: none;
+                }
+
+                .folder::before {
+                    list-style-type: "\1F4C1";
+                }
+
+                .folder-open::before {
+                    list-style-type: "\1F4C2";
+                }
+
+                /* Nested list styling */
+                .nested {
+                    display: none;
+                    /* Hide nested elements by default */
+                    padding-left: 20px;
+                    /* Add indentation */
+                }
+
+                /* Show nested elements when caret is clicked */
+                .active {
+                    display: block;
+                }
+            </style>
+            <script>
+                var listItems = document.querySelectorAll("li");
+                var carets = document.getElementsByClassName("caret");
+                var folders = document.getElementsByClassName("folder");
+
+                for (var i = 0; i < listItems.length; i++) {
+                    if (listItems[i].classList.contains("folder")) {
+                        listItems[i].addEventListener("click", function () {
+                            this.classList.toggle("folder-open"); // Toggle folder icon class
+                            var nested = this.querySelector(".nested");
+                            nested.classList.toggle("active"); // Toggle visibility of nested elements
+                        });
+                    } else if (listItems[i].classList.contains("caret")) {
+                        listItems[i].addEventListener("click", function () {
+                            this.classList.toggle("caret-down"); // Toggle caret rotation class
+                            var nested = this.querySelector(".nested");
+                            nested.classList.toggle("active"); // Toggle visibility of nested elements
+                        });
                     }
-        
-                    
-                </script>
-            </footer>
-        </body>
-    </main>
+                }
+
+
+            </script>
+        </footer>
+    </body>
+</main>
+
 </html>
