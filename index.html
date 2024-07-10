@@ -74,19 +74,6 @@
                     transform: rotate(90deg);
                 }
 
-                .folder {
-                    cursor: pointer;
-                    user-select: none;
-                }
-
-                .folder::before {
-                    list-style-type: "\1F4C1";
-                }
-
-                .folder-open::before {
-                    list-style-type: "\1F4C2";
-                }
-
                 /* Nested list styling */
                 .nested {
                     display: none;
@@ -101,26 +88,16 @@
                 }
             </style>
             <script>
-                var listItems = document.querySelectorAll("li");
                 var carets = document.getElementsByClassName("caret");
-                var folders = document.getElementsByClassName("folder");
+                var i;
 
-                for (var i = 0; i < listItems.length; i++) {
-                    if (listItems[i].classList.contains("folder")) {
-                        listItems[i].addEventListener("click", function () {
-                            this.classList.toggle("folder-open"); // Toggle folder icon class
-                            var nested = this.querySelector(".nested");
-                            nested.classList.toggle("active"); // Toggle visibility of nested elements
-                        });
-                    } else if (listItems[i].classList.contains("caret")) {
-                        listItems[i].addEventListener("click", function () {
-                            this.classList.toggle("caret-down"); // Toggle caret rotation class
-                            var nested = this.querySelector(".nested");
-                            nested.classList.toggle("active"); // Toggle visibility of nested elements
-                        });
-                    }
+                for (i = 0; i < carets.length; i++) {
+                    carets[i].addEventListener("click", function () {
+                        this.classList.toggle("caret-down"); // Toggle caret rotation class
+                        var nested = this.parentElement.querySelector(".nested");
+                        nested.classList.toggle("active"); // Toggle visibility of nested elements
+                    });
                 }
-
 
             </script>
         </footer>
